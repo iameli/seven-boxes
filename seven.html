@@ -1,0 +1,48 @@
+<body>
+  {{#isolate}}
+    <div id="Lightbox" class="modal hide fade">
+      <textarea id="Code">hi</textarea>
+    </div>
+  {{/isolate}}
+  {{>main}}
+</body>
+
+<template name="main">
+  <div class="container">
+    <div class="row">
+      <div class="span4 offset4">
+        {{{box 1}}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        {{{box 2}}}
+      </div>
+      <div class="span4">
+        {{{box 3}}}
+      </div>
+      <div class="span4">
+        {{{box 4}}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        {{{box 5}}}
+      </div>
+      <div class="span4">
+        {{{box 6}}}
+      </div>
+      <div class="span4">
+        {{{box 7}}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="box">
+  <div id="{{id}}" class="box">
+    {{#markdown}}
+      {{this.content}}
+    {{/markdown}}
+  </div>
+</template>

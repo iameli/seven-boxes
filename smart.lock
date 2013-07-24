@@ -1,0 +1,21 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "codemirror": {},
+      "fancybox": {}
+    },
+    "packages": {
+      "codemirror": {
+        "git": "https://github.com/digioak/meteor-codemirror.git",
+        "tag": "v0.0.2",
+        "commit": "39185b6e97c485e7cd65a2ef84190923c050b0d8"
+      },
+      "fancybox": {
+        "git": "https://github.com/matteodem/meteor-fancybox.git",
+        "tag": "v0.5.0",
+        "commit": "0dee721f3655f8b40fd89ab733fff44642bb5e79"
+      }
+    }
+  }
+}
