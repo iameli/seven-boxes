@@ -10,3 +10,5 @@ coffeescript
 bootstrap
 showdown
 underscore
+accounts-password
+accounts-ui

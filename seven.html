@@ -4,37 +4,60 @@
       <textarea id="Code">hi</textarea>
     </div>
   {{/isolate}}
-  {{>main}}
+  <div class="container">
+  {{#if currentUser}}
+    {{>main}}
+  {{else}}
+    {{>login}}
+  {{/if}}
+  </div>
 </body>
 
+<template name="login">
+  <div id="Front" class="span4 offset4">
+    <p id="FrontText" class="title">Seven boxes should be all you need to organize everything in your life. We'll keep them here for you.</p>
+    {{loginButtons}}
+    <p id="Privacy" class="title">
+      {{#if policy}}
+        <p id="Policy">Privacy Policy: We won't give or sell any of your information, ever, unless compelled to by a court of law.</p>
+      {{else}}
+        <a id="ShowPolicy" href="#">Privacy Policy</a>
+      {{/if}}
+    </p>
+  </div>
+</template>
+
 <template name="main">
-  <div class="container">
-    <div class="row">
-      <div class="span4 offset4">
-        {{{box 1}}}
-      </div>
+  <div class="row">
+    <div class="span4 offset4">
+      {{{box 1}}}
     </div>
-    <div class="row">
-      <div class="span4">
-        {{{box 2}}}
-      </div>
-      <div class="span4">
-        {{{box 3}}}
-      </div>
-      <div class="span4">
-        {{{box 4}}}
-      </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      {{{box 2}}}
     </div>
-    <div class="row">
-      <div class="span4">
-        {{{box 5}}}
-      </div>
-      <div class="span4">
-        {{{box 6}}}
-      </div>
-      <div class="span4">
-        {{{box 7}}}
-      </div>
+    <div class="span4">
+      {{{box 3}}}
+    </div>
+    <div class="span4">
+      {{{box 4}}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      {{{box 5}}}
+    </div>
+    <div class="span4">
+      {{{box 6}}}
+    </div>
+    <div class="span4">
+      {{{box 7}}}
+    </div>
+  </div>
+  <div class="row">
+    <div id="LogoutBox" class="span4 offset4">
+      <a id="Logout" href="#logout">Log out</a>
     </div>
   </div>
 </template>
