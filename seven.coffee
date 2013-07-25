@@ -32,10 +32,6 @@ if Meteor.isClient
   Meteor.startup ->
     #Wrangle accounts-ui a bit.
     Session.set("Meteor.loginButtons.dropdownVisible", true)
-    
-    #CodeMirror init
-    Seven.codeMirror = CodeMirror.fromTextArea $('#Code')[0],
-      mode: 'markdown'
       
     #CodeMirror wrangling. When we close the lightbox, save.
     $('#Lightbox').on 'shown', ->
@@ -68,6 +64,13 @@ if Meteor.isClient
   Deps.autorun ->
     user = Meteor.user()
     if user?
+      #This is a bit of a hack but CodeMirror doesn't like getting hidden
+      #and called repeatedly so we just delete it and reinitialize it upon
+      #every login.
+      delay 0, ->
+        $('#Lightbox').empty()
+        Seven.codeMirror = CodeMirror $('#Lightbox')[0],
+          mode: 'markdown'
       boxes = Seven.Box.find
         user: user._id
       myBoxes = {}
