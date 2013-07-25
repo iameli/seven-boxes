@@ -11,8 +11,25 @@ delay = (time, func) -> Meteor.setTimeout func, time
 
 Seven.Box = new Meteor.Collection "box"
 
+isCurrentUser = (userId, doc) -> return doc.user == userId
+
+Seven.Box.allow
+  insert: isCurrentUser
+  update: isCurrentUser
+  remove: isCurrentUser
+
+if Meteor.isServer
+  Meteor.publish "myBoxes", ->
+    if this.userId?
+      return Seven.Box.find
+        user: this.userId
+      
+if Meteor.isClient
+  Meteor.subscribe "myBoxes"
+
 Meteor.methods
-  'setBox': (user, num, content) ->
+  'setBox': (num, content) ->
+    user = this.userId
     curBox = Seven.Box.findOne 
       user: user
       num: num
@@ -34,10 +51,10 @@ if Meteor.isClient
     Session.set("Meteor.loginButtons.dropdownVisible", true)
       
     #CodeMirror wrangling. When we close the lightbox, save.
-    $('#Lightbox').on 'shown', ->
+    $('body').on 'shown', '#Lightbox', ->
       Seven.codeMirror.refresh()
-    $('#Lightbox').on 'hide', ->
-      Meteor.call 'setBox', Meteor.user()._id, curNum, "\n" + Seven.codeMirror.getValue()
+    $('body').on 'hide', '#Lightbox', ->
+      Meteor.call 'setBox', curNum, "\n" + Seven.codeMirror.getValue()
       
   #Upon double-clicking a box, show codemirror
   Template.box.events =
