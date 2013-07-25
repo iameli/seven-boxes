@@ -88,6 +88,7 @@ if Meteor.isClient
         $('#Lightbox').empty()
         Seven.codeMirror = CodeMirror $('#Lightbox')[0],
           mode: 'markdown'
+          lineWrapping: true
       boxes = Seven.Box.find
         user: user._id
       myBoxes = {}
