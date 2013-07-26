@@ -23,6 +23,10 @@ if Meteor.isServer
     if this.userId?
       return Seven.Box.find
         user: this.userId
+  Meteor.publish "sharedBoxes", ->
+    if this.userId?
+      return Seven.Box.find
+        shared: this.userId
       
 if Meteor.isClient
   Meteor.subscribe "myBoxes"
